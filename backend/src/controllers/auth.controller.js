@@ -70,6 +70,11 @@ async function loginUser(req, res) {
 
     return res.status(200).json({
       message: "User logged in successfully",
+      user: {
+        id: currUser._id,
+        email: currUser.email,
+        username: currUser.username,
+      },
       accessToken,
     });
   } catch (err) {

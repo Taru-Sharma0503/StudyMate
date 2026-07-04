@@ -1,8 +1,10 @@
 import "../styles/Register.css";
 import scholarImg from "../assets/scholar.png";
 import { Link , useNavigate} from "react-router-dom";
-import {useState,useRef} from "react";
-import axios from "axios";
+import {useState,useRef,useContext} from "react";
+import {AuthContext} from "../contexts/AuthContext";
+import {register} from "../api/auth.api";
+
 
 export default function Register() {
   const navigate=useNavigate();
@@ -11,51 +13,34 @@ export default function Register() {
   const [password,setPassword]=useState("");
   const [otp,setOtp]=useState("");
   const btnRef=useRef(null);
+  const {setUser,loading,setLoading}=useContext(AuthContext);
+
 
   async function verifyEmail(){
-    try{
-      const response=await axios.post("/api/auth/verify-email",{
-        "email":email
-      })
-      const data=response.data;
-      console.log(data.message);
-    }
-    catch(err){
-      console.log(err);
-    }
   }
 
   async function verifyOTP(){
-    try{
-      const response=await axios.post("/api/auth/verify-otp",{
-        "email":email,
-        "otp":otp
-      })
-      const data=response.data;
-      console.log(data.message);
-      setTimeout(()=>{
-        btnRef.current.innerText="Verified✅";
-      },1000);
-    }
-    catch(err){
-      console.log(err);
-    }
   }
 
   async function handleRegister(){
     try {
-      const response=await axios.post("/api/auth/register",{
-        "email":email,
-        "username":username,
-        "password":password
-      })
-      const data=response.data;
-      console.log(data.message);
+      setLoading(true);
+      const data=await register(email,username,password);
+      setUser(data.user);
       navigate("/login");
     }
     catch(err){
       console.log(err);
     }
+    finally {
+      setLoading(false);
+    }
+  }
+
+  if(loading) {
+    return (
+      <h1>Loading...</h1>
+    );
   }
 
   return (
@@ -74,8 +59,7 @@ export default function Register() {
         <input type="text" placeholder="Password" className="register-input" onChange={(e)=>setPassword(e.target.value)} />
         <br />
         <button className='register-btn' onClick={handleRegister}>Register</button>
-        <p>Already have an account?</p>
-        <Link to="/login">Login</Link>
+        <p>Already have an account?<Link to="/login">Login</Link></p>
       </div>
     </div>
   );
