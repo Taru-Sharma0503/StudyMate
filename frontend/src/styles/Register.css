@@ -55,3 +55,9 @@
     border: none;
     cursor: pointer;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .register-card {
+        width: 80%;
+    }
+}

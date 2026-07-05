@@ -229,6 +229,7 @@ async function verifyEmail(req, res) {
     await OTP.create({
       email,
       otp: otpHash,
+      expiresAt: new Date(Date.now() + 300000),
     })
 
     await sendEmail({
