@@ -3,7 +3,7 @@ import scholarImg from "../assets/scholar.png";
 import { Link , useNavigate} from "react-router-dom";
 import {useState,useRef,useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
-import {register} from "../api/auth.api";
+import {register,verify_email,verifyOtp} from "../api/auth.api";
 
 
 export default function Register() {
@@ -17,9 +17,31 @@ export default function Register() {
 
 
   async function verifyEmail(){
+    try {
+      setLoading(true);
+      const data=await verify_email(email);
+      console.log(data.message);
+    }
+    catch(err){
+      console.log(err);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   async function verifyOTP(){
+    try {
+      setLoading(true);
+      const data=await verifyOtp(email,otp);
+      console.log(data.message);
+    }
+    catch(err){
+      console.log(err);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   async function handleRegister(){
