@@ -1,61 +1,53 @@
 import "../styles/Register.css";
 import scholarImg from "../assets/scholar.png";
 import { Link , useNavigate} from "react-router-dom";
-import {useState,useRef,useContext} from "react";
-import {AuthContext} from "../contexts/AuthContext";
-import {register,verify_email,verifyOtp} from "../api/auth.api";
+import {useState,useRef} from "react";
+import useAuth from "../hooks/useAuth";
+
 
 
 export default function Register() {
   const navigate=useNavigate();
+  const {loading,registerUser,verifyUserEmail,verifyUserOTP}=useAuth();
   const [email,setEmail]=useState("");
   const [username,setUsername]=useState("");
   const [password,setPassword]=useState("");
   const [otp,setOtp]=useState("");
-  const btnRef=useRef(null);
-  const {setUser,loading,setLoading}=useContext(AuthContext);
+  const EmailbtnRef=useRef(null);
+  const OTPbtnRef=useRef(null);
 
 
   async function verifyEmail(){
     try {
-      setLoading(true);
-      const data=await verify_email(email);
-      console.log(data.message);
+    await verifyUserEmail(email);
+    setTimeout(()=>{
+      EmailbtnRef.current.innerText="OTP Sent✅";
+    },2000);
     }
     catch(err){
       console.log(err);
-    }
-    finally {
-      setLoading(false);
     }
   }
 
   async function verifyOTP(){
     try {
-      setLoading(true);
-      const data=await verifyOtp(email,otp);
-      console.log(data.message);
+      await verifyUserOTP(email,otp);
+      setTimeout(()=>{
+        OTPbtnRef.current.innerText="Verified✅";
+      },2000);
     }
     catch(err){
       console.log(err);
-    }
-    finally {
-      setLoading(false);
     }
   }
 
   async function handleRegister(){
     try {
-      setLoading(true);
-      const data=await register(email,username,password);
-      setUser(data.user);
-      navigate("/login");
+    await registerUser(email,username,password);
+    navigate("/login");
     }
     catch(err){
       console.log(err);
-    }
-    finally {
-      setLoading(false);
     }
   }
 
@@ -71,10 +63,10 @@ export default function Register() {
         <img src={scholarImg} alt="scholar" className="register-img" />
         <h1>Register</h1>
         <input type="email" placeholder="Email" className="register-input" onChange={(e)=>setEmail(e.target.value)} />
-        <button className="register-btn" onClick={verifyEmail}>Verify Email</button>
+        <button className="register-btn" onClick={verifyEmail} ref={EmailbtnRef}>Verify Email</button>
         <br />
         <input type="text" placeholder="Enter OTP sent to your email" className="register-input" onChange={(e)=>setOtp(e.target.value)} />
-        <button className="register-btn" onClick={verifyOTP} ref={btnRef}>Verify Code</button>
+        <button className="register-btn" onClick={verifyOTP} ref={OTPbtnRef}>Verify Code</button>
         <br />
         <input type="text" placeholder="Username" className="register-input" onChange={(e)=>setUsername(e.target.value)} />
         <br />

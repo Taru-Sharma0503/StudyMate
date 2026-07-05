@@ -55,4 +55,15 @@ async function verifyOtp(email,otp){
     }
 }
 
-export {login,register,logout,verify_email,verifyOtp};
+async function getUser(){
+    try {
+        const response=await api.get("/auth/profile");
+        return response.data;
+    }
+    catch(err){
+        console.log(err);
+        throw err;
+    }
+}
+
+export {login,register,logout,verify_email,verifyOtp,getUser};

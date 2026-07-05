@@ -1,30 +1,23 @@
 import "../styles/Login.css";
 import scholarImg from "../assets/scholar.png";
 import { Link, useNavigate } from "react-router-dom";
-import {useState,useContext} from "react";
-import {AuthContext} from "../contexts/AuthContext";
-import {login} from "../api/auth.api";
+import {useState} from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function Login() {
+  const {loading,loginUser}=useAuth();
   const navigate=useNavigate();
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
-  const {setUser,loading,setLoading}=useContext(AuthContext);
 
   async function handleLogin(e){
       e.preventDefault();
       try{
-        setLoading(true);
-        const data=await login(email,password);
-        console.log(data.message);
-        setUser(data.user);
-        navigate("/");
+      await loginUser(email,password);
+      navigate("/");
       }
       catch(err){
         console.log(err);
-      }
-      finally{
-        setLoading(false);
       }
   }
 

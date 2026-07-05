@@ -143,7 +143,10 @@ async function registerUser(req, res) {
       });
     }
 
-    const isEmailVerified = await verifiedEmail.findOne({ email, isVerified: true });
+    const isEmailVerified = await verifiedEmail.findOne({
+      email,
+      isVerified: true,
+    });
     if (!isEmailVerified) {
       return res.status(400).json({
         message: "Email is not verified",
@@ -207,9 +210,9 @@ async function logoutUser(req, res) {
 
 async function verifyEmail(req, res) {
   try {
-    const {email} = req.body;
+    const { email } = req.body;
 
-    if(!email){
+    if (!email) {
       return res.status(400).json({
         message: "Email is required",
       });
@@ -230,19 +233,18 @@ async function verifyEmail(req, res) {
       email,
       otp: otpHash,
       expiresAt: new Date(Date.now() + 300000),
-    })
+    });
 
     await sendEmail({
       to: email,
       subject: "Email Verification",
       text: `Your OTP for email verification is ${otp}. It will expire in 5 minutes.`,
-    })
+    });
 
     return res.status(200).json({
       message: "OTP sent to email",
     });
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
     return res.status(500).json({
       message: "Internal server error",
@@ -252,9 +254,9 @@ async function verifyEmail(req, res) {
 
 async function verifyOTP(req, res) {
   try {
-    const {email, otp} = req.body;
+    const { email, otp } = req.body;
 
-    if(!email || !otp){
+    if (!email || !otp) {
       return res.status(400).json({
         message: "Email and OTP are required",
       });
@@ -263,7 +265,7 @@ async function verifyOTP(req, res) {
     const otpHash = hashToken(otp);
     const otpRecord = await OTP.findOne({ email, otp: otpHash });
 
-    if(!otpRecord){
+    if (!otpRecord) {
       return res.status(400).json({
         message: "Invalid OTP",
       });
@@ -279,8 +281,38 @@ async function verifyOTP(req, res) {
     return res.status(200).json({
       message: "OTP verified successfully",
     });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
   }
-  catch(err){
+}
+
+async function profile(req, res) {
+  try {
+    const refreshToken = req.cookies.token;
+
+    if (!refreshToken) {
+      return res.status(401).json({
+        message: "No active session detected",
+      });
+    }
+
+    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+    const user = await user.findById(decoded.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Profile fetched successfully",
+      user,
+    });
+  } catch (err) {
     console.log(err);
     return res.status(500).json({
       message: "Internal server error",
@@ -295,4 +327,5 @@ module.exports = {
   refreshToken,
   verifyEmail,
   verifyOTP,
+  profile,
 };
