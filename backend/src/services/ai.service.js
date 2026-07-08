@@ -8,7 +8,7 @@ async function getAnswer(req, res) {
   try {
     const question = req.body.question;
     const response = await ai.interactions.create({
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       input: question,
     });
     return res.status(200).json({

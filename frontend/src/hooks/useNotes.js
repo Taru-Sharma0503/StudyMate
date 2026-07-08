@@ -50,7 +50,7 @@ export default function useNotes() {
       setLoading(true);
       const data = await deleteNote(id);
       console.log(data.message);
-      await get_notes();
+      setNotes(notes.filter((note)=> note._id !== id));
     } catch (err) {
       console.log(err);
     } finally {

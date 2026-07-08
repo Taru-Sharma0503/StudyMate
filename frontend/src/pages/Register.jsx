@@ -3,8 +3,7 @@ import scholarImg from "../assets/scholar.png";
 import { Link , useNavigate} from "react-router-dom";
 import {useState,useRef} from "react";
 import useAuth from "../hooks/useAuth";
-
-
+import { ProgressBar } from "react-loader-spinner";
 
 export default function Register() {
   const navigate=useNavigate();
@@ -53,7 +52,15 @@ export default function Register() {
 
   if(loading) {
     return (
-      <h1>Loading...</h1>
+      <ProgressBar
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
     );
   }
 
