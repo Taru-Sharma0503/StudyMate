@@ -16,3 +16,10 @@ html,body {
     --warning: #F59E0B;
     --danger: #EF4444;
 }
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

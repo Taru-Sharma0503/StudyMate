@@ -60,6 +60,7 @@ export default function Register() {
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""
+        className="loader"
       />
     );
   }

@@ -1,11 +1,12 @@
 import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { loading, logoutUser } from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import { ProgressBar } from "react-loader-spinner";
 
 export default function Sidebar() {
   const navigate = useNavigate();
+  const { loading, logoutUser } = useAuth();
 
   async function handleLogout() {
     await logoutUser();
@@ -22,6 +23,7 @@ export default function Sidebar() {
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""
+        className="loader"
       />
     );
   }

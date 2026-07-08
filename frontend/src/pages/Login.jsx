@@ -31,6 +31,7 @@ export default function Login() {
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""
+        className="loader"
       />
     );
   }
