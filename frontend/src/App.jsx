@@ -17,11 +17,11 @@ export default function App() {
           <Route index element={<Intro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/ai" element={<AI />} />
+          <Route path="/" element={<Home />} >
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="notes" element={<Notes />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="ai" element={<AI />} />
           </Route>
         </Routes>
       </Router>
