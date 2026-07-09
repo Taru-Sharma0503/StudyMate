@@ -24,14 +24,14 @@ export default function Dashboard() {
 
             <div className="recent-activity">
                 <div className="recent-notes">
-                    <h1>Recent Notes</h1>
+                    <h1 className="recent-activity-heading">Your Notes</h1>
                     {notes.map((note)=>(
                         <NotesCard title={note.title} description={note.description} fileUrl={note.fileUrl} />
                     ))}
                 </div>
 
                 <div className="recent-tasks">
-                    <h1>Recent Tasks</h1>
+                    <h1 className="recent-activity-heading">Your Tasks</h1>
                     {highPriorityTasks.map((highPriorityTask)=>(
                         <TasksCard title={highPriorityTask.title} subject={highPriorityTask.subject} deadline={highPriorityTask.deadline} />
                     ))}

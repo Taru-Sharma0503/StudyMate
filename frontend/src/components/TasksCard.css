@@ -3,8 +3,27 @@
     text-decoration: none;
     padding: 20px;
     height: max-content;
-    width: 80%;
+    width: 30rem;
     border-radius: 10px;
-    border: 1px solid black;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     display: inline-block;
+}
+
+input:checked + .tasks-card-title {
+    color: var(--secondary-text);
+    text-decoration: line-through;
+}
+
+.tasks-card-title {
+    color: var(--primary-text);
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tasks-card-details {
+    color: var(--primary-text);
+    font-size: 1.1rem;
+    font-family:'Times New Roman', Times, serif;
 }
