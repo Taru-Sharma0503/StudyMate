@@ -24,6 +24,10 @@ const tasksSchema = new mongoose.Schema(
       enum: ["LOW", "MEDIUM", "HIGH"],
       required: true,
     },
+    isCompleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

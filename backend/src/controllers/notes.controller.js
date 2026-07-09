@@ -13,6 +13,7 @@ async function getNotes(req, res) {
     if (notes.length == 0) {
       return res.status(404).json({
         message: "No notes found",
+        notes: [],
       });
     }
     return res.status(200).json({

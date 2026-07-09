@@ -10,13 +10,14 @@ async function getTasks() {
     }
 }
 
-async function updateTask(id, title, subject, deadline, priority) {
+async function updateTask(id, title, subject, deadline, priority, isCompleted) {
     try {
         const response = await api.patch(`/tasks/update-task/${id}`, {
             title,
             subject,
             deadline,
             priority,
+            isCompleted,
         });
         return response.data;
     } catch (err) {

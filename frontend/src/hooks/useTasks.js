@@ -4,11 +4,13 @@ import { getTasks, createTask, updateTask, deleteTask } from "../api/tasks.api";
 
 export default function useTasks() {
   const { setLoading } = useContext(AuthContext);
+  const [completedTasks, setCompletedTasks] = useState([]);
   const [highPriorityTasks, setHighPriorityTasks] = useState([]);
   const [mediumPriorityTasks, setMediumPriorityTasks] = useState([]);
   const [lowPriorityTasks, setLowPriorityTasks] = useState([]);
 
   const removeTaskFromAll = (id) => {
+    setCompletedTasks((tasks) => tasks.filter((task) => task._id !== id));
     setHighPriorityTasks((tasks) => tasks.filter((task) => task._id !== id));
     setMediumPriorityTasks((tasks) => tasks.filter((task) => task._id !== id));
     setLowPriorityTasks((tasks) => tasks.filter((task) => task._id !== id));
@@ -19,6 +21,7 @@ export default function useTasks() {
       setLoading(true);
       const data = await getTasks();
       console.log(data.message);
+      setCompletedTasks(data.completedTasks);
       setHighPriorityTasks(data.highPrioritytasks);
       setMediumPriorityTasks(data.mediumPrioritytasks);
       setLowPriorityTasks(data.lowPrioritytasks);
@@ -29,10 +32,10 @@ export default function useTasks() {
     }
   };
 
-  const create_task = async (title, description, file) => {
+  const create_task = async (title, subject, deadline, priority) => {
     try {
       setLoading(true);
-      const data = await createTask(title, description, file);
+      const data = await createTask(title, subject, deadline, priority);
       console.log(data.message);
       if (data.task.priority === "HIGH")
         setHighPriorityTasks([...highPriorityTasks, data.task]);
@@ -46,14 +49,17 @@ export default function useTasks() {
     }
   };
 
-  const update_task = async (id, title, description, file) => {
+  const update_task = async (id, title, subject, deadline, priority, isCompleted) => {
     try {
       setLoading(true);
-      const data = await updateTask(id, title, description, file);
+      const data = await updateTask(id, title, subject, deadline, priority, isCompleted);
       console.log(data.message);
       removeTaskFromAll(id);
 
-      if (data.task.priority === "HIGH") {
+      if (isCompleted) {
+        setCompletedTasks((tasks) => [...tasks, data.task]);
+      }
+      else if (data.task.priority === "HIGH") {
         setHighPriorityTasks((tasks) => [...tasks, data.task]);
       } else if (data.task.priority === "MEDIUM") {
         setMediumPriorityTasks((tasks) => [...tasks, data.task]);
@@ -89,6 +95,7 @@ export default function useTasks() {
   }, []);
 
   return {
+    completedTasks,
     highPriorityTasks,
     mediumPriorityTasks,
     lowPriorityTasks,
