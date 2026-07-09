@@ -1,0 +1,10 @@
+.tasks-card {
+    color: black;
+    text-decoration: none;
+    padding: 20px;
+    height: max-content;
+    width: 80%;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: inline-block;
+}

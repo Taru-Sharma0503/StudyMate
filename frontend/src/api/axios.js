@@ -33,7 +33,7 @@ api.interceptors.response.use(
         catch(err){
             console.log(err);
             setAccessToken(null);
-            // window.location.href = "/login";
+            window.location.href = "/login";
         }
     }
     throw err;

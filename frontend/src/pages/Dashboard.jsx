@@ -35,6 +35,12 @@ export default function Dashboard() {
                     {highPriorityTasks.map((highPriorityTask)=>(
                         <TasksCard title={highPriorityTask.title} subject={highPriorityTask.subject} deadline={highPriorityTask.deadline} />
                     ))}
+                    {mediumPriorityTasks.map((mediumPriorityTask)=>(
+                        <TasksCard title={mediumPriorityTask.title} subject={mediumPriorityTask.subject} deadline={mediumPriorityTask.deadline} />
+                    ))}
+                    {lowPriorityTasks.map((lowPriorityTask)=>(
+                        <TasksCard title={lowPriorityTask.title} subject={lowPriorityTask.subject} deadline={lowPriorityTask.deadline} />
+                    ))}
                 </div>
             </div>
         </div>
