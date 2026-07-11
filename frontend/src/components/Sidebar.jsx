@@ -22,8 +22,7 @@ export default function Sidebar() {
         color="#4fa94d"
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        className="loader"
+        wrapperClass="loader"
       />
     );
   }

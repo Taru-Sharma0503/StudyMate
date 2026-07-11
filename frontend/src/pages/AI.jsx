@@ -1,13 +1,12 @@
 import "../styles/AI.css";
 import useAI from "../hooks/useAI";
-import { useState } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { AuthContext } from "../contexts/AuthContext";
-import { useContext } from "react";
 import { ProgressBar } from "react-loader-spinner";
 
 export default function AI() {
-  const { get_answer } = useAI();
+  const { get_answer, isAnswering } = useAI();
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -16,6 +15,11 @@ export default function AI() {
     },
   ]);
   const { loading } = useContext(AuthContext);
+  const chatRef = useRef(null);
+
+  useEffect(() => {
+    chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  }, [messages]);
 
   if (loading) {
     return (
@@ -70,7 +74,7 @@ export default function AI() {
 
   return (
     <div className="ai">
-      <div className="ai-output-container">
+      <div className="ai-output-container" ref={chatRef}>
         {messages.map((message, index) => (
           <div
             key={index}
@@ -81,6 +85,14 @@ export default function AI() {
             <ReactMarkdown>{message.text}</ReactMarkdown>
           </div>
         ))}
+
+        {isAnswering && (
+          <div className="ai-message typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        )}
       </div>
 
       <div className="ai-input-container">

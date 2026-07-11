@@ -1,13 +1,12 @@
-import {useContext} from "react";
+import { useState} from "react";
 import getAnswer from "../api/ai.api.js";
-import {AuthContext} from "../contexts/AuthContext";
 
 export default function useAI(){
-    const {setLoading}=useContext(AuthContext);
+    const [isAnswering, setIsAnswering] = useState(false);
 
     async function get_answer(question) {
         try {
-            setLoading(true);
+            setIsAnswering(true);
             const data=await getAnswer(question);
             return data.answer;
         }
@@ -16,9 +15,9 @@ export default function useAI(){
             throw err;
         }
         finally{
-            setLoading(false);
+            setIsAnswering(false);
         }
     }
 
-    return {get_answer};
+    return {get_answer,isAnswering};
 }
