@@ -13,7 +13,7 @@ export default function Notes() {
             </div>
 
         {notes.map((note) => (
-            <NotesCard title={note.title} description={note.description} fileUrl={note.fileUrl} />
+            <NotesCard key={note._id} title={note.title} description={note.description} fileUrl={note.fileUrl} />
         ))}
         </div>
     );
