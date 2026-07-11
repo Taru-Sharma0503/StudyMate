@@ -1,25 +1,10 @@
-import {login,register,logout,verify_email,verifyOtp,getUser} from "../api/auth.api";
-import {useContext,useEffect} from "react";
+import {login,register,logout,verify_email,verifyOtp} from "../api/auth.api";
+import {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 
 export default function useAuth(){
     const {user,setUser,loading,setLoading}=useContext(AuthContext);
 
-    useEffect(()=>{
-        async function fetchUser() {
-            try {
-                const data=await getUser();
-                setUser(data.user);
-            }
-            catch(err){
-                console.log(err);
-            }
-            finally{
-                setLoading(false);
-            }
-        }
-        fetchUser();
-    },[]);
     const loginUser=async (email, password) => {
         try {
             setLoading(true);

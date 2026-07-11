@@ -8,6 +8,7 @@ import Notes from "./pages/Notes";
 import Tasks from "./pages/Tasks";
 import AI from "./pages/AI";
 import AuthProvider from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
@@ -17,7 +18,14 @@ export default function App() {
           <Route index element={<Intro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home />} >
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          >
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="notes" element={<Notes />} />
             <Route path="tasks" element={<Tasks />} />
