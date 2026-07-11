@@ -1,0 +1,24 @@
+.notes {
+    height: 97dvh;
+    overflow-y:auto;
+}
+
+.notes-heading-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
+
+.add-note-btn {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    background-color: var(--secondary);
+    font-family: sans-serif;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}

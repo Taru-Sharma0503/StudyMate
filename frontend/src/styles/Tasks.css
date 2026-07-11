@@ -1,0 +1,35 @@
+.tasks {
+    width: 100%;
+    padding:10px;
+    margin: 10px;
+    height: 97dvh;
+    overflow-y: auto;
+}
+
+.add-task-btn {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    background-color: var(--secondary);
+    font-family: sans-serif;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.tasks-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
+
+.priority-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+}
