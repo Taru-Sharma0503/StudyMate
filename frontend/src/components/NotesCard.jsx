@@ -1,24 +1,6 @@
 import "./NotesCard.css";
 
-export default function NotesCard({key, title, description, fileUrl }) {
-
-  function editNote() {
-    const id=key;
-    try {
-      console.log(id);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function deleteNote() {
-    const id=key;
-    try {
-      console.log(id);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+export default function NotesCard({ id, title, description, fileUrl, onEdit, onDelete }) {
 
   return (
     <div className="notes-card">
@@ -27,10 +9,10 @@ export default function NotesCard({key, title, description, fileUrl }) {
       </a>
       <p className="notes-card-description">{description}</p>
       <div className="notes-card-functionality">
-        <button className="notes-card-btn" onClick={editNote}>
+        <button className="notes-card-btn edit-note-btn" onClick={() => onEdit({ id, title, description })}>
           Edit
         </button>
-        <button className="notes-card-btn" onClick={deleteNote}>
+        <button className="notes-card-btn delete-note-btn" onClick={() => onDelete(id)}>
           Delete
         </button>
       </div>

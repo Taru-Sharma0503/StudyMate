@@ -23,3 +23,54 @@
     height: 40px;
     border-radius: 10px;
 }
+
+.note-form-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: grid;
+    place-items: center;
+}
+
+.note-form {
+    width: min(400px, 90%);
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    padding: 24px;
+    border-radius: 10px;
+    display: grid;
+    gap: 12px;
+}
+
+.note-form input, .note-form textarea {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.note-save-btn, .note-cancel-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 9px 18px;
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.note-save-btn {
+    background-color: #2563eb;
+}
+
+.note-cancel-btn {
+    background-color: #6b7280;
+}
+
+.note-save-btn:hover, .note-cancel-btn:hover {
+    filter: brightness(0.9);
+}
+
+input[type="file"] {
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}

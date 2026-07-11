@@ -37,3 +37,15 @@
     margin: 10px;
     cursor: pointer;
 }
+
+.edit-note-btn {
+    background-color: #2563eb;
+}
+
+.delete-note-btn {
+    background-color: #dc2626;
+}
+
+.notes-card-btn:hover {
+    filter: brightness(0.9);
+}
