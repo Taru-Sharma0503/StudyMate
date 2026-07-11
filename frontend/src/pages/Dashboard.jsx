@@ -4,16 +4,13 @@ import useNotes from "../hooks/useNotes";
 import DashboardCard from "../components/DashboardCard";
 import NotesCard from "../components/NotesCard";
 import TasksCard from "../components/TasksCard";
-import { AuthContext } from "../contexts/AuthContext";
-import { useContext } from "react";
 import {ProgressBar} from "react-loader-spinner";
 
 export default function Dashboard() {
-    const {loading} = useContext(AuthContext);
-    const {notes} = useNotes();
-    const {completedTasks, highPriorityTasks, mediumPriorityTasks, lowPriorityTasks} = useTasks();
+    const {notes,loading:notesLoading} = useNotes();
+    const {completedTasks, highPriorityTasks, mediumPriorityTasks, lowPriorityTasks,loading:tasksLoading} = useTasks();
 
-    if(loading){
+    if(notesLoading || tasksLoading){
         return (
             <ProgressBar
                 visible={true}

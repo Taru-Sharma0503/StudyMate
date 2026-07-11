@@ -1,6 +1,7 @@
 import {login,register,logout,verify_email,verifyOtp} from "../api/auth.api";
 import {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
+import { setAccessToken } from "../api/axios";
 
 export default function useAuth(){
     const {user,setUser,loading,setLoading}=useContext(AuthContext);
@@ -10,6 +11,7 @@ export default function useAuth(){
             setLoading(true);
             const data=await login(email,password);
             console.log(data.message);
+            setAccessToken(data.accessToken);
             setUser(data.user);
         }
         catch(err){

@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useState, useContext, useEffect } from "react";
 
 export default function useNotes() {
-  const { setLoading } = useContext(AuthContext);
+  const { loading,setLoading } = useContext(AuthContext);
   const [notes, setNotes] = useState([]);
 
   const get_notes = async () => {
@@ -66,5 +66,5 @@ export default function useNotes() {
     fetchNotes();
   }, []);
 
-  return { notes, create_note, update_note, delete_note };
+  return { notes,loading, create_note, update_note, delete_note };
 }

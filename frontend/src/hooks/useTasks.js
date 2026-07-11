@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { getTasks, createTask, updateTask, deleteTask } from "../api/tasks.api";
 
 export default function useTasks() {
-  const { setLoading } = useContext(AuthContext);
+  const {loading,setLoading } = useContext(AuthContext);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [highPriorityTasks, setHighPriorityTasks] = useState([]);
   const [mediumPriorityTasks, setMediumPriorityTasks] = useState([]);
@@ -103,5 +103,6 @@ export default function useTasks() {
     create_task,
     update_task,
     delete_task,
+    loading
   };
 }
