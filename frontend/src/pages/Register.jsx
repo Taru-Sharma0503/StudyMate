@@ -68,7 +68,8 @@ export default function Register() {
     <div className="register">
       <div className="register-card">
         <img src={scholarImg} alt="scholar" className="register-img" />
-        <h1>Register</h1>
+        <h1 className="auth-title">Create your account</h1>
+        <p className="auth-subtitle">Start organizing your study life.</p>
         <input type="email" placeholder="Email" className="register-input" onChange={(e)=>setEmail(e.target.value)} />
         <button className="register-btn" onClick={verifyEmail} ref={EmailbtnRef}>Verify Email</button>
         <br />
@@ -77,10 +78,10 @@ export default function Register() {
         <br />
         <input type="text" placeholder="Username" className="register-input" onChange={(e)=>setUsername(e.target.value)} />
         <br />
-        <input type="text" placeholder="Password" className="register-input" onChange={(e)=>setPassword(e.target.value)} />
+        <input type="password" placeholder="Password" className="register-input" onChange={(e)=>setPassword(e.target.value)} />
         <br />
         <button className='register-btn' onClick={handleRegister}>Register</button>
-        <p>Already have an account?<Link to="/login">Login</Link></p>
+        <p className="auth-switch">Already have an account? <Link to="/login">Login</Link></p>
       </div>
     </div>
   );

@@ -29,6 +29,7 @@
   gap: 10px;
   margin-top: 12px;
 }
+
 .task-edit-btn,
 .task-delete-btn {
   color: white;
@@ -37,10 +38,13 @@
   padding: 8px 14px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.2rem;
 }
+
 .task-edit-btn {
   background: #2563eb;
 }
+
 .task-delete-btn {
   background: #dc2626;
 }

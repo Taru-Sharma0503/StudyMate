@@ -39,27 +39,14 @@ export default function Login() {
     <div className="login">
       <div className="login-card">
         <img src={scholarImg} alt="scholar" className="login-img" />
-        <h1>Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          className="login-input"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Password"
-          className="login-input"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button className="login-btn" onClick={handleLogin}>
-          Login
-        </button>
-        <p>
-          Don't have an account?<Link to="/register">Register</Link>
-        </p>
+        <h1 className="auth-title">Welcome back</h1>
+        <p className="auth-subtitle">Log in to continue with StudyMate.</p>
+        <form className="auth-form" onSubmit={handleLogin}>
+          <input type="email" placeholder="Email" className="login-input" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" placeholder="Password" className="login-input" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button className="login-btn" type="submit">Login</button>
+        </form>
+        <p className="auth-switch">Don't have an account? <Link to="/register">Create one</Link></p>
       </div>
     </div>
   );
