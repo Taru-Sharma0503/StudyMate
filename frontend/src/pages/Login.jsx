@@ -30,8 +30,7 @@ export default function Login() {
         color="#4fa94d"
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        className="loader"
+        wrapperClass="loader"
       />
     );
   }

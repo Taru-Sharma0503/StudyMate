@@ -1,8 +1,8 @@
 import api from "./axios";
 
-export default function getAnswer(question) {
+export default async function getAnswer(question) {
     try {
-        const response=api.post("/ai/ask-ai",{question});
+        const response=await api.post("/ai/ask-ai",{question});
         return response.data;
     }
     catch(err){

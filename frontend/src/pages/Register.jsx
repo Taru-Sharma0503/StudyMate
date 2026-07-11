@@ -59,8 +59,7 @@ export default function Register() {
         color="#4fa94d"
         ariaLabel="progress-bar-loading"
         wrapperStyle={{}}
-        wrapperClass=""
-        className="loader"
+        wrapperClass="loader"
       />
     );
   }

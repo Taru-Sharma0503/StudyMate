@@ -1,10 +1,32 @@
 import "../styles/Tasks.css";
 import useTasks from "../hooks/useTasks";
 import TasksCard from "../components/TasksCard";
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
+import { ProgressBar } from "react-loader-spinner";
 
 export default function Tasks() {
-  const { completedTasks ,highPriorityTasks, mediumPriorityTasks, lowPriorityTasks } =
-    useTasks();
+  const {
+    completedTasks,
+    highPriorityTasks,
+    mediumPriorityTasks,
+    lowPriorityTasks,
+  } = useTasks();
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return (
+      <ProgressBar
+        visible={true}
+        height="80"
+        width="80"
+        barColor="#4fa94d"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass="loader"
+      />
+    );
+  }
 
   return (
     <div className="tasks">
@@ -55,7 +77,7 @@ export default function Tasks() {
             ))}
           </div>
         )}
-        
+
         {completedTasks.length > 0 && (
           <div className="completed-tasks">
             <h1 className="priority-heading">Completed</h1>
@@ -69,7 +91,6 @@ export default function Tasks() {
             ))}
           </div>
         )}
-
       </div>
     </div>
   );

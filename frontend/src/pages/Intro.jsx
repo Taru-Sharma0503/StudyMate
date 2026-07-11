@@ -1,8 +1,27 @@
 import "../styles/Intro.css";
 import IntroNavbar from "../components/IntroNavbar";
 import introImg from "../assets/Intro-img.jpg";
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
+import { ProgressBar } from "react-loader-spinner";
 
-export default function intro() {
+export default function Intro() {
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return (
+      <ProgressBar
+        visible={true}
+        height="80"
+        width="80"
+        barColor="#4fa94d"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass="loader"
+      />
+    );
+  }
+
   return (
     <div className="intro">
       <IntroNavbar />
