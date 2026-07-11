@@ -13,7 +13,12 @@ async function getNotes(){
 
 async function createNote(title,description,file){
     try {
-        const response=await api.post("/notes/create-note",{title,description,file});
+        const formData=new FormData();
+        formData.append("title",title);
+        formData.append("description",description);
+        formData.append("file",file);
+
+        const response=await api.post("/notes/create-note",formData);
         return response.data;
     }
     catch(err){
@@ -24,7 +29,12 @@ async function createNote(title,description,file){
 
 async function updateNote(id,title,description,file){
     try {
-        const response=await api.patch(`/notes/update-note/${id}`,{title,description,file});
+        const formData=new FormData();
+        formData.append("title",title);
+        formData.append("description",description);
+        formData.append("file",file);
+
+        const response=await api.patch(`/notes/update-note/${id}`,formData);
         return response.data;
     }
     catch(err){

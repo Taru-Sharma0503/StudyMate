@@ -292,31 +292,21 @@ async function verifyOTP(req, res) {
 async function profile(req, res) {
   try {
     const refreshToken = req.cookies.token;
-
     if (!refreshToken) {
-      return res.status(401).json({
-        message: "No active session detected",
-      });
+      return res.status(401).json({ message: "No active session detected" });
     }
 
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-    const user = await user.findById(decoded.id).select("-password");
+    const currUser = await user.findById(decoded.id).select("-password");
 
-    if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-      });
+    if (!currUser) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    return res.status(200).json({
-      message: "Profile fetched successfully",
-      user,
-    });
+    return res.status(200).json({ message: "Profile fetched successfully", user: currUser });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({
-      message: "Internal server error",
-    });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 
