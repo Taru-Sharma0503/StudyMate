@@ -1,30 +1,51 @@
 .tasks-card {
-    color: black;
-    text-decoration: none;
-    padding: 20px;
-    margin: 20px;
-    height: max-content;
-    width: 400px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    display: inline-block;
+  color: black;
+  text-decoration: none;
+  padding: 20px;
+  margin: 20px;
+  height: max-content;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
 
 .tasks-card-title {
-    color: var(--primary-text);
-    font-size: 1.5rem;
-    text-decoration: none;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .tasks-card-details {
-    color: var(--primary-text);
-    font-size: 1.1rem;
-    font-family:'Times New Roman', Times, serif;
+  color: var(--primary-text);
+  font-size: 1.1rem;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.task-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.task-edit-btn,
+.task-delete-btn {
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.task-edit-btn {
+  background: #2563eb;
+}
+.task-delete-btn {
+  background: #dc2626;
 }
 
 .tasks-card-title.completed {
-    text-decoration: line-through;
-    color: var(--secondary-text);
+  text-decoration: line-through;
+  color: var(--secondary-text);
 }

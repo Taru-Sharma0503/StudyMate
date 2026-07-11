@@ -1,27 +1,149 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    width:90%;
-    height: 97dvh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    padding: 10px;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 97dvh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  gap: 30px;
+}
+
+.dashboard-note-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.dashboard-note-form {
+  width: min(400px, 90%);
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  background: white;
+  border-radius: 10px;
+}
+
+.dashboard-note-form input,
+.dashboard-note-form textarea {
+  padding: 10px;
+}
+
+.dashboard-note-save,
+.dashboard-note-cancel {
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 18px;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dashboard-note-save {
+  background: #2563eb;
+}
+
+.dashboard-note-cancel {
+  background: #6b7280;
+}
+
+.dashboard-tasks-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-task-save,
+.dashboard-task-cancel {
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dashboard-task-save {
+  background: #2563eb;
+}
+
+.dashboard-task-cancel {
+  background: #6b7280;
+  margin-left: 10px;
+}
+
+.dashboard-task-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.dashboard-task-form {
+  width: min(400px, 90%);
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  background: white;
+  border-radius: 10px;
+}
+
+.dashboard-task-form input,
+.dashboard-task-form select {
+  padding: 10px;
 }
 
 .dashboard-statistics {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .recent-activity {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.recent-notes,
+.recent-tasks {
+  width: 48%;
+}
+
+.recent-notes .notes-card {
+  box-sizing: border-box;
+  width: calc(50% - 40px);
+}
+
+@media (max-width: 900px) {
+  .recent-activity {
+    flex-direction: column;
+  }
+
+  .recent-notes,
+  .recent-tasks {
+    width: 100%;
+  }
 }
 
 .recent-activity-heading {
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 20px;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  margin: 20px;
 }

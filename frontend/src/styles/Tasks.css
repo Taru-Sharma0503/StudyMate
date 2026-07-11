@@ -1,35 +1,79 @@
 .tasks {
-    width: 100%;
-    padding:10px;
-    margin: 10px;
-    height: 97dvh;
-    overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  height: 97dvh;
+  overflow-y: auto;
 }
 
 .add-task-btn {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border: none;
-    background-color: var(--secondary);
-    font-family: sans-serif;
-    width: 200px;
-    height: 40px;
-    border-radius: 10px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  background-color: var(--secondary);
+  font-family: sans-serif;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
 }
 
 .tasks-heading {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
 }
 
 .priority-heading {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+}
+
+.task-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+
+.task-form {
+  width: min(400px, 90%);
+  font-size: 1.2rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  display: grid;
+  gap: 12px;
+}
+
+.task-form input,
+.task-form select {
+  padding: 10px;
+}
+
+.task-save-btn,
+.task-cancel-btn {
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 9px 18px;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.task-save-btn {
+  background: #2563eb;
+}
+
+.task-cancel-btn {
+  background: #6b7280;
 }

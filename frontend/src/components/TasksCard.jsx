@@ -1,23 +1,28 @@
 import "./TasksCard.css";
 
 export default function TasksCard({
-  title,
-  subject,
-  deadline,
-  isCompleted,
+  task,
+  onEdit,
+  onDelete,
+  onToggleComplete,
 }) {
   return (
     <div className="tasks-card">
-      <input type="checkbox" checked={isCompleted} /> Mark as Completed
-
-      <h2 className={`tasks-card-title ${isCompleted ? "completed" : ""}`}>
-        {title}
+      <label>
+        <input
+          type="checkbox"
+          checked={task.isCompleted}
+          onChange={() => onToggleComplete(task)}
+        />{" "}
+        Mark as Completed
+      </label>
+      <h2 className={`tasks-card-title ${task.isCompleted ? "completed" : ""}`}>
+        {task.title}
       </h2>
-
       <p className="tasks-card-details">
-        {subject}
-        {" ● Due By "}
-        {new Date(deadline).toLocaleString("en-IN", {
+        {task.subject}
+        {" • Due By "}
+        {new Date(task.deadline).toLocaleString("en-IN", {
           day: "numeric",
           month: "short",
           year: "numeric",
@@ -26,6 +31,19 @@ export default function TasksCard({
           hour12: true,
         })}
       </p>
+      {onEdit && (
+        <div className="task-card-actions">
+          <button className="task-edit-btn" onClick={() => onEdit(task)}>
+            Edit
+          </button>
+          <button
+            className="task-delete-btn"
+            onClick={() => onDelete(task._id)}
+          >
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 }
