@@ -9,10 +9,15 @@ const aiRoutes = require("./routes/ai.route");
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-    origin: "http://localhost:5173",
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://studymate-umber-eta.vercel.app/",
+    ],
     credentials: true,
-}));
+  }),
+);
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
