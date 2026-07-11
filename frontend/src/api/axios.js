@@ -25,7 +25,7 @@ api.interceptors.response.use(
     if (err.response?.status === 401 && !original._retry) {
         original._retry = true;
         try {
-            const response = await axios.get("http://localhost:3000/api/auth/refresh-token",{withCredentials: true});
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`,{withCredentials: true});
             const newAccessToken = response.data.accessToken;
             setAccessToken(newAccessToken);
             return api(original);
