@@ -1,9 +1,8 @@
 import { getNotes, createNote, updateNote, deleteNote } from "../api/notes.api";
-import { AuthContext } from "../contexts/AuthContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function useNotes() {
-  const { loading,setLoading } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [notes, setNotes] = useState([]);
 
   const get_notes = async () => {
@@ -50,7 +49,7 @@ export default function useNotes() {
       setLoading(true);
       const data = await deleteNote(id);
       console.log(data.message);
-      setNotes(notes.filter((note)=> note._id !== id));
+      setNotes(notes.filter((note) => note._id !== id));
     } catch (err) {
       console.log(err);
     } finally {
@@ -66,5 +65,5 @@ export default function useNotes() {
     fetchNotes();
   }, []);
 
-  return { notes,loading, create_note, update_note, delete_note };
+  return { notes, loading, create_note, update_note, delete_note };
 }

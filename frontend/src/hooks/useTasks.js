@@ -1,9 +1,8 @@
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { useState, useEffect } from "react";
 import { getTasks, createTask, updateTask, deleteTask } from "../api/tasks.api";
 
 export default function useTasks() {
-  const {loading,setLoading } = useContext(AuthContext);
+  const [loading, setLoading] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [highPriorityTasks, setHighPriorityTasks] = useState([]);
   const [mediumPriorityTasks, setMediumPriorityTasks] = useState([]);
@@ -49,17 +48,30 @@ export default function useTasks() {
     }
   };
 
-  const update_task = async (id, title, subject, deadline, priority, isCompleted) => {
+  const update_task = async (
+    id,
+    title,
+    subject,
+    deadline,
+    priority,
+    isCompleted,
+  ) => {
     try {
       setLoading(true);
-      const data = await updateTask(id, title, subject, deadline, priority, isCompleted);
+      const data = await updateTask(
+        id,
+        title,
+        subject,
+        deadline,
+        priority,
+        isCompleted,
+      );
       console.log(data.message);
       removeTaskFromAll(id);
 
       if (isCompleted) {
         setCompletedTasks((tasks) => [...tasks, data.task]);
-      }
-      else if (data.task.priority === "HIGH") {
+      } else if (data.task.priority === "HIGH") {
         setHighPriorityTasks((tasks) => [...tasks, data.task]);
       } else if (data.task.priority === "MEDIUM") {
         setMediumPriorityTasks((tasks) => [...tasks, data.task]);
@@ -103,6 +115,6 @@ export default function useTasks() {
     create_task,
     update_task,
     delete_task,
-    loading
+    loading,
   };
 }
