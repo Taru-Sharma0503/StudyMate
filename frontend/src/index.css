@@ -25,3 +25,11 @@ html,body {
     width: 100px;
     height: 100px;
 }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}

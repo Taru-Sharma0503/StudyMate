@@ -53,3 +53,8 @@
   text-decoration: line-through;
   color: var(--secondary-text);
 }
+
+@media (max-width: 768px) {
+  .tasks-card { display: block; width: 100%; margin: 12px 0; padding: 16px; }
+  .task-card-actions { flex-wrap: wrap; }
+}

@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   height: 97dvh;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -130,6 +130,36 @@
   .recent-tasks {
     width: 100%;
   }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    width: 100%;
+    height: auto;
+    min-height: calc(100dvh - 60px);
+    padding: 16px;
+    gap: 22px;
+  }
+
+  .dashboard-statistics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .recent-activity-heading {
+    margin: 12px 0;
+    font-size: 1.35rem;
+  }
+
+  .recent-notes .notes-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-statistics { grid-template-columns: 1fr; }
+  .dashboard-note-form, .dashboard-task-form { width: calc(100% - 32px); padding: 18px; }
 }
 
 .recent-activity-heading {
