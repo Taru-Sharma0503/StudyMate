@@ -77,3 +77,14 @@
 .task-cancel-btn {
   background: #6b7280;
 }
+
+@media (max-width: 768px) {
+  .tasks { width: 100%; min-height: calc(100dvh - 60px); height: auto; margin: 0; padding: 16px; }
+  .tasks-heading, .priority-heading { padding: 0; margin: 0 0 14px; }
+  .add-task-btn { width: auto; padding: 0 14px; font-size: 1rem; }
+  .task-form { width: calc(100% - 32px); padding: 18px; }
+}
+
+@media (max-width: 420px) {
+  .tasks-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+}

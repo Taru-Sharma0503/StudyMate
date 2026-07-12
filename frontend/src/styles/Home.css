@@ -1,4 +1,70 @@
 .home {
     display: flex;
     flex-direction: row;
+    min-height: 100dvh;
+}
+
+.home-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.mobile-header,
+.menu-toggle,
+.sidebar-backdrop {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .home {
+        display: block;
+    }
+
+    .mobile-header {
+        height: 60px;
+        box-sizing: border-box;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--background);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+    }
+
+    .mobile-header h1 {
+        margin: 0;
+        color: var(--secondary);
+        font: 600 1.35rem "Poppins", sans-serif;
+    }
+
+    .menu-toggle {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-content: center;
+        gap: 5px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+    }
+
+    .sidebar-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 29;
+        border: 0;
+        background: rgba(17, 24, 39, 0.45);
+    }
 }

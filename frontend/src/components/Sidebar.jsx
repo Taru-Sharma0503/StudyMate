@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { ProgressBar } from "react-loader-spinner";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onNavigate }) {
   const navigate = useNavigate();
   const { loading, logoutUser } = useAuth();
 
@@ -28,12 +28,13 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="sidebar">
+    <aside className={`sidebar ${isOpen ? "sidebar-open" : ""}`}>
       <div className="sidebar-content">
         <h1 className="studymate">StudyMate</h1>
 
         <NavLink
           to="/dashboard"
+          onClick={onNavigate}
           className={({ isActive }) =>
             `routes-link ${isActive ? "active" : ""}`
           }
@@ -52,6 +53,7 @@ export default function Sidebar() {
 
         <NavLink
           to="/notes"
+          onClick={onNavigate}
           className={({ isActive }) =>
             `routes-link ${isActive ? "active" : ""}`
           }
@@ -70,6 +72,7 @@ export default function Sidebar() {
 
         <NavLink
           to="/tasks"
+          onClick={onNavigate}
           className={({ isActive }) =>
             `routes-link ${isActive ? "active" : ""}`
           }
@@ -88,6 +91,7 @@ export default function Sidebar() {
 
         <NavLink
           to="/ai"
+          onClick={onNavigate}
           className={({ isActive }) =>
             `routes-link ${isActive ? "active" : ""}`
           }
@@ -118,6 +122,6 @@ export default function Sidebar() {
           Logout
         </button>
       </div>
-    </div>
+    </aside>
   );
 }
