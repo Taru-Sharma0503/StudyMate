@@ -22,7 +22,16 @@ api.interceptors.response.use(
   (res) => res,
   async (err) => {
     const original = err.config;
-    if (err.response?.status === 401 && !original._retry) {
+
+     const isAuthRoute =
+      original.url.includes("/auth/login") ||
+      original.url.includes("/auth/register") ||
+      original.url.includes("/auth/profile") ||
+      original.url.includes("/auth/refresh-token") ||
+      original.url.includes("/auth/verify-email") ||
+      original.url.includes("/auth/verify-otp");
+
+    if (err.response?.status === 401 && !original._retry && !isAuthRoute) {
         original._retry = true;
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`,{withCredentials: true});
@@ -33,7 +42,6 @@ api.interceptors.response.use(
         catch(err){
             console.log(err);
             setAccessToken(null);
-            window.location.href = "/login";
         }
     }
     throw err;
