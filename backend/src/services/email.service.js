@@ -13,6 +13,8 @@ async function sendEmail({ to, subject, text, html }) {
     html,
   };
 
+  await transporter.verify();
+  console.log("SMTP verified");
   const info = await transporter.sendMail(mailOptions);
   console.log("Email sent:", info.messageId);
   return info;
