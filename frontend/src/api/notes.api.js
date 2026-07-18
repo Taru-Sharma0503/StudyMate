@@ -7,7 +7,7 @@ async function getNotes(){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -24,7 +24,7 @@ async function createNote(title,description,file){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -41,7 +41,7 @@ async function updateNote(id,title,description,file){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -53,7 +53,7 @@ async function deleteNote(id){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }

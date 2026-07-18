@@ -13,6 +13,7 @@ export default function useNotes() {
       setNotes(data.notes);
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -26,6 +27,7 @@ export default function useNotes() {
       setNotes([...notes, data.note]);
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -39,6 +41,7 @@ export default function useNotes() {
       setNotes(notes.map((note) => (note._id === id ? data.note : note)));
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -52,6 +55,7 @@ export default function useNotes() {
       setNotes(notes.filter((note) => note._id !== id));
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }

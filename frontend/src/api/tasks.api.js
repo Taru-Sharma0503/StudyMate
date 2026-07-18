@@ -6,7 +6,7 @@ async function getTasks() {
         const response = await api.get("/tasks/get-tasks");
         return response.data;
     } catch (err) {
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -23,7 +23,7 @@ async function updateTask(id, title, subject, deadline, priority, isCompleted) {
         });
         return response.data;
     } catch (err) {
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -39,7 +39,7 @@ async function createTask(title, subject, deadline, priority) {
         });
         return response.data;
     } catch (err) {
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -50,7 +50,7 @@ async function deleteTask(id){
         const response = await api.delete(`/tasks/delete-task/${id}`);
         return response.data;
     } catch (err) {
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }

@@ -26,6 +26,7 @@ export default function useTasks() {
       setLowPriorityTasks(data.lowPrioritytasks);
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -43,6 +44,7 @@ export default function useTasks() {
       else setLowPriorityTasks([...lowPriorityTasks, data.task]);
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -80,6 +82,7 @@ export default function useTasks() {
       }
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -93,6 +96,7 @@ export default function useTasks() {
       await removeTaskFromAll(id);
     } catch (err) {
       console.log(err);
+      throw err;
     } finally {
       setLoading(false);
     }

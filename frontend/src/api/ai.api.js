@@ -7,7 +7,7 @@ export default async function getAnswer(question) {
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }

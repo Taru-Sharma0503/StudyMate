@@ -14,7 +14,14 @@ import { Toaster } from "sonner";
 export default function App() {
   return (
     <div>
-      <Toaster />
+      <Toaster 
+      toastOptions={{
+        style :{
+          borderColor: "red",
+          fontSize: "1.2rem",
+          fontFamily: "'Poppins', sans-serif",
+        },
+      }}/>
       <AuthProvider>
         <Router>
           <Routes>

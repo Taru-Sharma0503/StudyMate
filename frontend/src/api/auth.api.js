@@ -7,7 +7,7 @@ async function login(email,password){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -19,7 +19,7 @@ async function register(email,username,password){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -31,7 +31,7 @@ async function logout(){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -43,7 +43,7 @@ async function verify_email(email){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -55,7 +55,7 @@ async function verifyOtp(email,otp){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
@@ -67,7 +67,7 @@ async function getUser(){
         return response.data;
     }
     catch(err){
-        toast(err.data.message);
+        toast(err.response.data.message);
         console.log(err);
         throw err;
     }
