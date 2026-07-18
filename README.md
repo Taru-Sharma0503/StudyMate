@@ -131,7 +131,11 @@ RESEND_API_KEY=your_resend_api_key
 
 GEMINI_API_KEY=your_gemini_api_key
 
-CLIENT_URL=http://localhost:5173
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 Run the backend
@@ -174,7 +178,7 @@ npm run dev
 | JWT_SECRET | JWT Secret Key |
 | RESEND_API_KEY | Resend API key |
 | GEMINI_API_KEY | Gemini API Key |
-| CLIENT_URL | Frontend URL |
+| CLOUDINARY_API_SECRET | Cloudinary API secret |
 | CLOUDINARY_CLOUD_NAME | Cloudinary cloud name |
 | CLOUDINARY_API_KEY | Cloudinary API key |
 
@@ -190,12 +194,12 @@ npm run dev
 
 Add screenshots of:
 
-- Landing Page
-- Login
-- Dashboard
-- Notes
-- Tasks
-- AI Chat
+![landing](image.png)
+![login](image-1.png)
+![dashboard](image-2.png)
+![notes](image-3.png)
+![tasks](image-4.png)
+![ai](image-5.png)
 
 ---
 
