@@ -6,6 +6,8 @@ const Session = require("../models/sessions.model");
 const sendEmail = require("../services/email.service");
 const OTP = require("../models/otp.model");
 const verifiedEmail = require("../models/verifiedEmail.model");
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 function hashToken(token) {
   return crypto.createHash("sha256").update(token).digest("hex");
@@ -136,6 +138,19 @@ async function registerUser(req, res) {
       });
     }
 
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "Please fill a valid email address",
+      });
+    }
+
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        message:
+          "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character",
+      });
+    }
+
     const isExisting = await user.findOne({ email });
     if (isExisting) {
       return res.status(400).json({
@@ -215,6 +230,12 @@ async function verifyEmail(req, res) {
     if (!email) {
       return res.status(400).json({
         message: "Email is required",
+      });
+    }
+
+    if(!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "Please enter a valid email address",
       });
     }
 
