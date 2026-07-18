@@ -194,12 +194,13 @@ npm run dev
 
 Add screenshots of:
 
-![landing](image.png)
-![login](image-1.png)
-![dashboard](image-2.png)
-![notes](image-3.png)
-![tasks](image-4.png)
-![ai](image-5.png)
+<img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/f6de9760-0421-4ace-861d-763396e83e42" />
+<img width="1917" height="912" alt="image" src="https://github.com/user-attachments/assets/74f3008f-5290-43da-af29-59d07c42ffd4" />
+<img width="1897" height="908" alt="image" src="https://github.com/user-attachments/assets/befe59c7-e74b-498b-8f6f-7b5f4a7d9413" />
+<img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/0492726c-adab-4e6b-9a87-0d6c67dc1907" />
+<img width="1917" height="903" alt="image" src="https://github.com/user-attachments/assets/d73f098c-1f0f-412b-8382-8666c6ec1f4c" />
+<img width="1917" height="912" alt="image" src="https://github.com/user-attachments/assets/adb71938-23c0-4d2c-a2e0-1a6bd12027b0" />
+
 
 ---
 
