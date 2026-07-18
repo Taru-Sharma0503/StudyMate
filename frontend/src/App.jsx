@@ -9,30 +9,34 @@ import Tasks from "./pages/Tasks";
 import AI from "./pages/AI";
 import AuthProvider from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route index element={<Intro />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="notes" element={<Notes />} />
-            <Route path="tasks" element={<Tasks />} />
-            <Route path="ai" element={<AI />} />
-          </Route>
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <div>
+      <Toaster />
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route index element={<Intro />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="notes" element={<Notes />} />
+              <Route path="tasks" element={<Tasks />} />
+              <Route path="ai" element={<AI />} />
+            </Route>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </div>
   );
 }

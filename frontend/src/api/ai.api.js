@@ -1,4 +1,5 @@
 import api from "./axios";
+import {toast} from "sonner";
 
 export default async function getAnswer(question) {
     try {
@@ -6,6 +7,7 @@ export default async function getAnswer(question) {
         return response.data;
     }
     catch(err){
+        toast(err.data.message);
         console.log(err);
         throw err;
     }

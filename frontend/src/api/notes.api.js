@@ -1,4 +1,5 @@
 import api from "../api/axios";
+import { toast } from "sonner";
 
 async function getNotes(){
     try {
@@ -6,6 +7,7 @@ async function getNotes(){
         return response.data;
     }
     catch(err){
+        toast(err.data.message);
         console.log(err);
         throw err;
     }
@@ -22,6 +24,7 @@ async function createNote(title,description,file){
         return response.data;
     }
     catch(err){
+        toast(err.data.message);
         console.log(err);
         throw err;
     }
@@ -38,6 +41,7 @@ async function updateNote(id,title,description,file){
         return response.data;
     }
     catch(err){
+        toast(err.data.message);
         console.log(err);
         throw err;
     }
@@ -49,6 +53,7 @@ async function deleteNote(id){
         return response.data;
     }
     catch(err){
+        toast(err.data.message);
         console.log(err);
         throw err;
     }
