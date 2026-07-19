@@ -27,9 +27,7 @@ api.interceptors.response.use(
       original.url.includes("/auth/login") ||
       original.url.includes("/auth/register") ||
       original.url.includes("/auth/profile") ||
-      original.url.includes("/auth/refresh-token") ||
-      original.url.includes("/auth/verify-email") ||
-      original.url.includes("/auth/verify-otp");
+      original.url.includes("/auth/refresh-token");
 
     if (err.response?.status === 401 && !original._retry && !isAuthRoute) {
         original._retry = true;
