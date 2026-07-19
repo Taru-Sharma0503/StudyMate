@@ -1,17 +1,16 @@
 import "../styles/Register.css";
 import scholarImg from "../assets/scholar.png";
 import { Link , useNavigate} from "react-router-dom";
-import {useState,useRef} from "react";
+import {useState} from "react";
 import useAuth from "../hooks/useAuth";
 import { ProgressBar } from "react-loader-spinner";
 
 export default function Register() {
   const navigate=useNavigate();
-  const {loading,registerUser,verifyUserEmail,verifyUserOTP}=useAuth();
+  const {loading,registerUser}=useAuth();
   const [email,setEmail]=useState("");
   const [username,setUsername]=useState("");
   const [password,setPassword]=useState("");
-  const EmailbtnRef=useRef(null);
 
   async function handleRegister(){
     try {
