@@ -1,6 +1,6 @@
 # 📚 StudyMate
 
-StudyMate is a full-stack productivity web application built for students to organize their academic life in one place. It allows users to manage notes, track tasks, verify their accounts via email, and interact with an AI assistant for study-related queries.
+StudyMate is a full-stack productivity web application built for students to organize their academic life in one place. It allows users to manage notes, track tasks and interact with an AI assistant for study-related queries.
 
 ## 🚀 Live Demo
 
@@ -13,7 +13,6 @@ https://studymate-umber-eta.vercel.app/
 - User Registration & Login
 - JWT Authentication
 - Secure HTTP-only Cookies
-- Email Verification using OTP
 - Logout functionality
 - Protected Routes
 
@@ -60,12 +59,10 @@ https://studymate-umber-eta.vercel.app/
 - MongoDB
 - Mongoose
 - JWT
-- Resend
 - Multer
 
 ### APIs & Services
 - Google Gemini API
-- Resend API
 
 ### Deployment
 - Frontend: Vercel
@@ -127,8 +124,6 @@ MONGO_URI=your_mongodb_connection_string
 
 JWT_SECRET=your_jwt_secret
 
-RESEND_API_KEY=your_resend_api_key
-
 GEMINI_API_KEY=your_gemini_api_key
 
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
@@ -176,7 +171,6 @@ npm run dev
 | PORT | Server Port |
 | MONGO_URI | MongoDB Atlas Connection String |
 | JWT_SECRET | JWT Secret Key |
-| RESEND_API_KEY | Resend API key |
 | GEMINI_API_KEY | Gemini API Key |
 | CLOUDINARY_API_SECRET | Cloudinary API secret |
 | CLOUDINARY_CLOUD_NAME | Cloudinary cloud name |
@@ -210,7 +204,6 @@ Add screenshots of:
 - HTTP-only Cookies
 - Password Hashing using bcrypt
 - Protected Routes
-- Email OTP Verification
 - Secure File Uploads
 - CORS Configuration
 
