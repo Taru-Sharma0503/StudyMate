@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const Session = require("../models/sessions.model");
-const OTP = require("../models/otp.model");
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
