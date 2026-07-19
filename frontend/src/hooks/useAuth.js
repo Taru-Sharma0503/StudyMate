@@ -1,4 +1,4 @@
-import {login,register,logout,verify_email,verifyOtp} from "../api/auth.api";
+import {login,register,logout} from "../api/auth.api";
 import {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import { setAccessToken } from "../api/axios";
@@ -54,35 +54,5 @@ export default function useAuth(){
         }
     }
 
-    const verifyUserEmail=async (email) => {
-        try {
-            setLoading(true);
-            const data=await verify_email(email);
-            console.log(data.message);
-        }
-        catch(err){
-            console.log(err);
-            throw err;
-        }
-        finally{
-            setLoading(false);
-        }
-    }
-
-    const verifyUserOTP=async (email,otp) => {
-        try {
-            setLoading(true);
-            const data=await verifyOtp(email,otp);
-            console.log(data.message);
-        }
-        catch(err){
-            console.log(err);
-            throw err;
-        }
-        finally{
-            setLoading(false);
-        }
-    }
-
-    return {user,loading,loginUser,registerUser,logoutUser,verifyUserEmail,verifyUserOTP};
+    return {user,loading,loginUser,registerUser,logoutUser};
 }

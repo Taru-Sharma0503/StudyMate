@@ -3,9 +3,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const Session = require("../models/sessions.model");
-const sendEmail = require("../services/email.service");
 const OTP = require("../models/otp.model");
-const verifiedEmail = require("../models/verifiedEmail.model");
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -158,25 +156,19 @@ async function registerUser(req, res) {
       });
     }
 
-    const isEmailVerified = await verifiedEmail.findOne({
-      email,
-      isVerified: true,
-    });
-    if (!isEmailVerified) {
-      return res.status(400).json({
-        message: "Email is not verified",
-      });
-    }
-
     const currUser = await user.create({
       email,
       username,
       password,
     });
 
-    await verifiedEmail.deleteOne({ email });
-    return res.status(201).json({
+    return res.status(200).json({
       message: "User registered successfully",
+      user: {
+        id: currUser._id,
+        email: currUser.email,
+        username: currUser.username,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -223,93 +215,6 @@ async function logoutUser(req, res) {
   }
 }
 
-async function verifyEmail(req, res) {
-  try {
-    const { email } = req.body;
-
-    if (!email) {
-      return res.status(400).json({
-        message: "Email is required",
-      });
-    }
-
-    if(!emailRegex.test(email)) {
-      return res.status(400).json({
-        message: "Please enter a valid email address",
-      });
-    }
-
-    const isExisting = await user.findOne({ email });
-    if (isExisting) {
-      return res.status(400).json({
-        message: "A user with this email already exists",
-      });
-    }
-
-    await OTP.deleteMany({ email });
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpHash = hashToken(otp);
-
-    await OTP.create({
-      email,
-      otp: otpHash,
-      expiresAt: new Date(Date.now() + 300000),
-    });
-
-    await sendEmail({
-      to: email,
-      subject: "Email Verification",
-      text: `Your OTP for email verification is ${otp}. It will expire in 5 minutes.`,
-    });
-
-    return res.status(200).json({
-      message: "OTP sent to email",
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-}
-
-async function verifyOTP(req, res) {
-  try {
-    const { email, otp } = req.body;
-
-    if (!email || !otp) {
-      return res.status(400).json({
-        message: "Email and OTP are required",
-      });
-    }
-
-    const otpHash = hashToken(otp);
-    const otpRecord = await OTP.findOne({ email, otp: otpHash });
-
-    if (!otpRecord) {
-      return res.status(400).json({
-        message: "Invalid OTP",
-      });
-    }
-
-    await OTP.deleteMany({ email });
-
-    await verifiedEmail.create({
-      email,
-      isVerified: true,
-    });
-
-    return res.status(200).json({
-      message: "OTP verified successfully",
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({
-      message: "Internal server error",
-    });
-  }
-}
-
 async function profile(req, res) {
   try {
     const refreshToken = req.cookies.token;
@@ -336,7 +241,5 @@ module.exports = {
   registerUser,
   logoutUser,
   refreshToken,
-  verifyEmail,
-  verifyOTP,
   profile,
 };

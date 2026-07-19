@@ -37,30 +37,6 @@ async function logout(){
     }
 }
 
-async function verify_email(email){
-    try {
-        const response=await api.post("/auth/verify-email",{email});
-        return response.data;
-    }
-    catch(err){
-        toast(err.response.data.message);
-        console.log(err);
-        throw err;
-    }
-}
-
-async function verifyOtp(email,otp){
-    try {
-        const response=await api.post("/auth/verify-otp",{email,otp});
-        return response.data;
-    }
-    catch(err){
-        toast(err.response.data.message);
-        console.log(err);
-        throw err;
-    }
-}
-
 async function getUser(){
     try {
         const response=await api.get("/auth/profile");
@@ -73,4 +49,4 @@ async function getUser(){
     }
 }
 
-export {login,register,logout,verify_email,verifyOtp,getUser};
+export {login,register,logout,getUser};
